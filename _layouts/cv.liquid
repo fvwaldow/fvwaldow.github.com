@@ -15,15 +15,20 @@ layout: default
 
 <div class="post">
   <header class="post-header">
+    {% assign cv_pdf_url = nil %}
+    {% if page.cv_pdf %}
+      {% if page.cv_pdf contains '://' %}
+        {% assign cv_pdf_url = page.cv_pdf %}
+      {% else %}
+        {% assign cv_pdf_url = page.cv_pdf | relative_url %}
+      {% endif %}
+    {% endif %}
+
     <h1 class="post-title">
       {{ page.title }}
-      {% if page.cv_pdf %}
+      {% if cv_pdf_url %}
         <a
-          {% if page.cv_pdf contains '://' %}
-            href="{{ page.cv_pdf }}"
-          {% else %}
-            href="{{ page.cv_pdf | relative_url }}"
-          {% endif %}
+          href="{{ cv_pdf_url }}"
           target="_blank"
           rel="noopener noreferrer"
           class="float-right"
@@ -38,6 +43,19 @@ layout: default
   </header>
 
   <article>
+    {% if cv_pdf_url and page.cv_pdf_embed %}
+      <div class="card mt-3 p-2">
+        <iframe
+          src="{{ cv_pdf_url }}#view=FitH"
+          title="{{ page.title }} PDF"
+          width="100%"
+          height="{{ page.cv_pdf_height | default: 1000 }}"
+          style="border: 0;"
+          loading="lazy"
+        ></iframe>
+      </div>
+    {% endif %}
+
     <div class="cv">
       {% comment %} Determine which CV format to render {% endcomment %}
       {% assign render_rendercv = false %}
