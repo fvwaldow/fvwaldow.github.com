@@ -14,20 +14,6 @@ layout: default
 {% endif %}
 
 <div class="post">
-  <header class="post-header">
-    <h1 class="post-title">
-      {{ page.title }}
-      {% if cv_pdf_url %}
-        <a href="{{ cv_pdf_url }}" target="_blank" rel="noopener noreferrer" class="float-right">
-          <i class="fas fa-file-pdf"></i>
-        </a>
-      {% endif %}
-    </h1>
-    {% if page.description %}
-      <p class="post-description">{{ page.description }}</p>
-    {% endif %}
-  </header>
-
   <article>
     {% if cv_pdf_url and page.cv_pdf_embed != false %}
       <div class="row">
@@ -57,22 +43,67 @@ layout: default
           try {
             const loadingTask = pdfjsLib.getDocument('{{ cv_pdf_url }}');
             const pdf = await loadingTask.promise;
+            const renderScale = {{ page.cv_pdf_scale | default: 1.6 }};
+            const deviceScale = window.devicePixelRatio || 1;
 
             for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
               const page = await pdf.getPage(pageNum);
-              const viewport = page.getViewport({ scale: 1.25 });
+              const viewport = page.getViewport({ scale: renderScale });
+
+              const pageContainer = document.createElement('div');
+              pageContainer.style.position = 'relative';
+              pageContainer.style.width = `${viewport.width}px`;
+              pageContainer.style.height = `${viewport.height}px`;
+              pageContainer.style.margin = '0 auto 1rem';
+              pageContainer.style.maxWidth = '100%';
 
               const canvas = document.createElement('canvas');
               canvas.style.display = 'block';
-              canvas.style.margin = '0 auto 1rem';
-              canvas.style.maxWidth = '100%';
-              canvas.width = viewport.width;
-              canvas.height = viewport.height;
+              canvas.style.width = `${viewport.width}px`;
+              canvas.style.height = `${viewport.height}px`;
+              canvas.width = Math.floor(viewport.width * deviceScale);
+              canvas.height = Math.floor(viewport.height * deviceScale);
 
               const context = canvas.getContext('2d');
-              await page.render({ canvasContext: context, viewport: viewport }).promise;
+              await page.render({
+                canvasContext: context,
+                viewport: viewport,
+                transform: [deviceScale, 0, 0, deviceScale, 0, 0],
+              }).promise;
 
-              viewer.appendChild(canvas);
+              pageContainer.appendChild(canvas);
+
+              const annotations = await page.getAnnotations();
+              for (const annotation of annotations) {
+                if (annotation.subtype !== 'Link') continue;
+
+                const href = annotation.url || annotation.unsafeUrl;
+                if (!href) continue;
+
+                const rect = viewport.convertToViewportRectangle(annotation.rect);
+                const left = Math.min(rect[0], rect[2]);
+                const top = Math.min(rect[1], rect[3]);
+                const width = Math.abs(rect[0] - rect[2]);
+                const height = Math.abs(rect[1] - rect[3]);
+
+                const link = document.createElement('a');
+                link.href = href;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.title = href;
+                link.style.position = 'absolute';
+                link.style.left = `${left}px`;
+                link.style.top = `${top}px`;
+                link.style.width = `${width}px`;
+                link.style.height = `${height}px`;
+                link.style.backgroundColor = 'rgba(5, 205, 65, 0.25)';
+                link.style.outline = '1px solid rgba(0, 167, 50, 0.8)';
+                link.style.borderRadius = '2px';
+
+                pageContainer.appendChild(link);
+              }
+
+              viewer.appendChild(pageContainer);
             }
           } catch (error) {
             viewer.innerHTML = '<p class="text-center mt-3">Unable to render PDF in-page. Use the Download CV link above.</p>';
