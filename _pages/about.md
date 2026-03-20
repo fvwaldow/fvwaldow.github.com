@@ -26,6 +26,8 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am a first year PhD student at the [German Institute for Economic Research](https://www.diw.de/en) and the [Humboldt University](https://www.hu-berlin.de/en). My research focuses on the intersection of spatial economics, transportation economics, and econometric methodologies. Prior to my doctoral studies, I studied Economics at the [University of Bonn](https://www.uni-bonn.de/en/home?set_language=en) and the[Toulouse School of Economics](https://www.tse-fr.eu/). I hold a Bachelor’s degree in Political Science and Economics from the [University of Potsdam](https://www.uni-potsdam.de/en/university-of-potsdam). 
+I am a first year PhD student at the [German Institute for Economic Research](https://www.diw.de/en) and the [Humboldt University](https://www.hu-berlin.de/en). My research focuses on the intersection of spatial economics, transportation economics, and econometric methodologies. 
+
+Prior to my doctoral studies, I studied Economics at the [University of Bonn](https://www.uni-bonn.de/en/home?set_language=en) and the[Toulouse School of Economics](https://www.tse-fr.eu/). I hold a Bachelor’s degree in Political Science and Economics from the [University of Potsdam](https://www.uni-potsdam.de/en/university-of-potsdam). 
 
 Happy to discuss research anytime, feel free to reach out.
