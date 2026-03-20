@@ -2,20 +2,18 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
-nav: false
+subtitle: 
+nav: true
+show_title: false
 
 profile:
   align: left
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+social: false # social icons are shown in the navbar
 
 announcements:
   enabled: false # includes a list of news items
@@ -28,6 +26,6 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am a first year PhD student at the [German Institute for Economic Research](https://www.diw.de/en) and the [Humboldt University] (https://www.hu-berlin.de/en). My research focuses on the intersection of spatial economics, transportation economics, and econometric methodologies. Prior to my doctoral studies, I studied Economics at the [University of Bonn](https://www.uni-bonn.de/en/home?set_language=en) and the[Toulouse School of Economics](https://www.tse-fr.eu/). I hold a Bachelor’s degree in Political Science and Economics from the [University of Potsdam](https://www.uni-potsdam.de/en/university-of-potsdam). 
+I am a first year PhD student at the [German Institute for Economic Research](https://www.diw.de/en) and the [Humboldt University](https://www.hu-berlin.de/en). My research focuses on the intersection of spatial economics, transportation economics, and econometric methodologies. Prior to my doctoral studies, I studied Economics at the [University of Bonn](https://www.uni-bonn.de/en/home?set_language=en) and the[Toulouse School of Economics](https://www.tse-fr.eu/). I hold a Bachelor’s degree in Political Science and Economics from the [University of Potsdam](https://www.uni-potsdam.de/en/university-of-potsdam). 
 
-Happy to discuss research anytime — feel free to reach out.
+Happy to discuss research anytime, feel free to reach out.
