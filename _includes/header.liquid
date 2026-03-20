@@ -19,22 +19,6 @@
             {{- site.title -}}
           {% endif %}
       </a>
-      <div class="navbar-right-icons ml-auto">
-        {% if site.enable_navbar_social %}
-          <!-- Social Icons Right -->
-          <div class="navbar-brand social">{% social_links %}</div>
-        {% endif %}
-        {% if site.enable_darkmode %}
-          <!-- Toogle theme mode -->
-          <div class="toggle-container ml-2">
-            <button id="light-toggle" title="Change theme">
-              <i class="fa-half-sun-moon" id="light-toggle-system"></i>
-              <i class="fa-solid fa-moon" id="light-toggle-dark"></i>
-              <i class="fa-solid fa-sun" id="light-toggle-light"></i>
-            </button>
-          </div>
-        {% endif %}
-      </div>
       <!-- Navbar Toggle -->
       <button
         class="navbar-toggler collapsed"
@@ -123,6 +107,22 @@
             </li>
           {% endif %}
         </ul>
+        <div class="navbar-right-icons ml-auto">
+          {% if site.enable_navbar_social %}
+            <!-- Social Icons Right -->
+            <div class="navbar-brand social">{% social_links %}</div>
+          {% endif %}
+          {% if site.enable_darkmode %}
+            <!-- Toogle theme mode -->
+            <div class="toggle-container ml-2">
+              <button id="light-toggle" title="Change theme">
+                <i class="fa-half-sun-moon" id="light-toggle-system"></i>
+                <i class="fa-solid fa-moon" id="light-toggle-dark"></i>
+                <i class="fa-solid fa-sun" id="light-toggle-light"></i>
+              </button>
+            </div>
+          {% endif %}
+        </div>
       </div>
     </div>
   </nav>
