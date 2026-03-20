@@ -2,10 +2,7 @@
   <!-- Nav Bar -->
   <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}" role="navigation">
     <div class="container">
-      {% if site.enable_navbar_social %}
-        <!-- Social Icons -->
-        <div class="navbar-brand social">{% social_links %}</div>
-      {% elsif page.permalink != '/' %}
+      {% if page.permalink != '/' %}
         <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
           {% if site.title == 'blank' %}
             {% if site.first_name %}
@@ -40,8 +37,8 @@
         <span class="icon-bar bottom-bar"></span>
       </button>
 
-      <div class="collapse navbar-collapse text-right" id="navbarNav">
-        <ul class="navbar-nav ml-auto flex-nowrap">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav flex-nowrap">
           {% assign about_page = site.pages | where: 'permalink', '/' | first %}
           {% if about_page and about_page.nav %}
             <!-- About -->
@@ -135,6 +132,10 @@
             </li>
           {% endif %}
         </ul>
+        {% if site.enable_navbar_social %}
+          <!-- Social Icons -->
+          <div class="navbar-brand social ml-auto">{% social_links %}</div>
+        {% endif %}
       </div>
     </div>
   </nav>
