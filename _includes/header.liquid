@@ -19,9 +19,25 @@
             {{- site.title -}}
           {% endif %}
       </a>
+      <div class="navbar-right-icons ml-auto">
+        {% if site.enable_navbar_social %}
+          <!-- Social Icons Right -->
+          <div class="navbar-brand social">{% social_links %}</div>
+        {% endif %}
+        {% if site.enable_darkmode %}
+          <!-- Toogle theme mode -->
+          <div class="toggle-container ml-2">
+            <button id="light-toggle" title="Change theme">
+              <i class="fa-half-sun-moon" id="light-toggle-system"></i>
+              <i class="fa-solid fa-moon" id="light-toggle-dark"></i>
+              <i class="fa-solid fa-sun" id="light-toggle-light"></i>
+            </button>
+          </div>
+        {% endif %}
+      </div>
       <!-- Navbar Toggle -->
       <button
-        class="navbar-toggler collapsed ml-auto"
+        class="navbar-toggler collapsed"
         type="button"
         data-toggle="collapse"
         data-target="#navbarNav"
@@ -37,19 +53,6 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav flex-nowrap">
-          {% assign about_page = site.pages | where: 'permalink', '/' | first %}
-          {% if about_page and about_page.nav %}
-            <!-- About -->
-            <li class="nav-item {% if page.permalink == '/' %}active{% endif %}">
-              <a class="nav-link" href="{{ '/' | relative_url }}">
-                {{- about_page.title }}
-                {% if page.permalink == '/' %}
-                  <span class="sr-only">(current)</span>
-                {% endif %}
-              </a>
-            </li>
-          {% endif %}
-
           <!-- Other pages -->
           {% assign sorted_pages = site.pages | sort: 'nav_order' %}
           {% for p in sorted_pages %}
@@ -120,20 +123,6 @@
             </li>
           {% endif %}
         </ul>
-        {% if site.enable_navbar_social %}
-          <!-- Social Icons Right -->
-          <div class="navbar-brand social ml-auto">{% social_links %}</div>
-        {% endif %}
-        {% if site.enable_darkmode %}
-          <!-- Toogle theme mode -->
-          <div class="toggle-container ml-2">
-            <button id="light-toggle" title="Change theme">
-              <i class="fa-half-sun-moon" id="light-toggle-system"></i>
-              <i class="fa-solid fa-moon" id="light-toggle-dark"></i>
-              <i class="fa-solid fa-sun" id="light-toggle-light"></i>
-            </button>
-          </div>
-        {% endif %}
       </div>
     </div>
   </nav>

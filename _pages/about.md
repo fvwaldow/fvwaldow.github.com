@@ -3,7 +3,7 @@ layout: about
 title: about
 permalink: /
 subtitle: 
-nav: true
+nav: false
 show_title: false
 
 profile:

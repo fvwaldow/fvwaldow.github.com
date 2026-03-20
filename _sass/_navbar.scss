@@ -9,6 +9,11 @@
   border-bottom: 1px solid var(--global-divider-color);
   background-color: var(--global-bg-color);
   opacity: 0.95;
+
+  .navbar-right-icons {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .navbar .dropdown-menu,
