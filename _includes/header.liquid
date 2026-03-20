@@ -20,6 +20,9 @@
             {{- site.title -}}
           {% endif %}
         </a>
+      {% elsif site.enable_navbar_social %}
+        <!-- Social Icons -->
+        <div class="navbar-brand social">{% social_links %}</div>
       {% endif %}
       <!-- Navbar Toggle -->
       <button
@@ -37,8 +40,8 @@
         <span class="icon-bar bottom-bar"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav flex-nowrap">
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
           {% assign about_page = site.pages | where: 'permalink', '/' | first %}
           {% if about_page and about_page.nav %}
             <!-- About -->
@@ -133,7 +136,7 @@
           {% endif %}
         </ul>
         {% if site.enable_navbar_social %}
-          <!-- Social Icons -->
+          <!-- Social Icons Right -->
           <div class="navbar-brand social ml-auto">{% social_links %}</div>
         {% endif %}
       </div>
