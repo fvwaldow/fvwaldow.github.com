@@ -51,6 +51,16 @@ body.sticky-bottom-footer {
 // Publications layout is defined in _includes/bib_search.liquid
 // Uses jekyll-scholar for BibTeX parsing and Bootstrap cards for display
 
+.about-selected-papers {
+  margin-top: 1rem;
+}
+
+@media (min-width: 576px) {
+  .about-selected-papers {
+    margin-left: 31%;
+  }
+}
+
 /*****************************************************************************
 * Projects
 *****************************************************************************/
