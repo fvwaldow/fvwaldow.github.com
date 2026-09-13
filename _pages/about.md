@@ -26,10 +26,12 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am a PhD student at the [German Institute for Economic Research](https://www.diw.de/en) and [Humboldt University of Berlin](https://www.hu-berlin.de/en). My research sits at the intersection of spatial economics, transportation economics, and econometric methods.
+I am a PhD student in Economics at the [German Institute for Economic Research](https://www.diw.de/en) (DIW Berlin). My research sits at the intersection of spatial and transportation economics, with a methodological focus on causal inference.
 
-I previously studied Economics at the [University of Bonn](https://www.uni-bonn.de/en/home?set_language=en) and the [Toulouse School of Economics](https://www.tse-fr.eu/). I hold a Bachelor's degree in Political Science and Economics from the [University of Potsdam](https://www.uni-potsdam.de/en/university-of-potsdam).
+Before joining DIW, I completed an M.Sc. in Economics at the [University of Bonn](https://www.uni-bonn.de/en/home?set_language=en) and the [Toulouse School of Economics](https://www.tse-fr.eu/), and a B.Sc. in Politics and Economics at the [University of Potsdam](https://www.uni-potsdam.de/en/university-of-potsdam).
 
-My current work studies markets, networks, and the effects of transport and environmental policy. See my [research]({{ '/publications/' | relative_url }}) for papers and ongoing projects.
+My current work studies markets, spatial networks, and the effects of transport policies, with methodological interests in econometric theory for causal inference.
 
-Happy to discuss research anytime. [Get in touch](mailto:f.vonwaldow@uni-bonn.de).
+See my [research]({{ '/publications/' | relative_url }}) for papers and ongoing projects.
+
+Please feel free to [get in touch](mailto:f.vonwaldow@uni-bonn.de) to discuss some ideas.

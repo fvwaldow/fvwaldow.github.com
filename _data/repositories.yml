@@ -1,6 +1,9 @@
 repo_description_lines_max: 2
 
 github_repos:
-  - fvwaldow/nasc
-  - fvwaldow/Replication-Package-Network-Aware-Synthetic-Control
+  - fvwaldow/algorithmic-collusion-LLM
   - fvwaldow/fvwaldow.github.com
+  - fvwaldow/nasc
+  - fvwaldow/Railway-Disruptions-and-Road-Traffic-Dynamics-Evidence-from-the-2024-GDL-Strikes
+  - fvwaldow/Replication-Package-Network-Aware-Synthetic-Control
+  - fvwaldow/SpatialComp-Fuel-Tax-Incidence
