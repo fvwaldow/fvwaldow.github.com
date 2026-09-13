@@ -2,6 +2,15 @@
  * Footer styles
  ******************************************************************************/
 
+footer .container {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 31px;
+  padding-right: 12px;
+}
+
 footer.fixed-bottom {
   background-color: var(--global-footer-bg-color);
   font-size: 0.75rem;
@@ -10,7 +19,7 @@ footer.fixed-bottom {
     color: var(--global-footer-text-color);
     padding-top: 9px;
     padding-bottom: 8px;
-    text-align: center;
+    text-align: left;
   }
 
   a {
@@ -24,12 +33,11 @@ footer.fixed-bottom {
 }
 
 footer.sticky-bottom {
-  border-top: 1px solid var(--global-divider-color);
   padding-top: 40px;
   padding-bottom: 40px;
   font-size: 0.9rem;
 
   .container {
-    text-align: center;
+    text-align: left;
   }
 }

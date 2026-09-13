@@ -1,0 +1,60 @@
+name: Update GitHub repositories
+
+on:
+  push:
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  update-repositories:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch public repositories
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repositories = await github.paginate(github.rest.repos.listForUser, {
+              username: owner,
+              type: 'public',
+              per_page: 100,
+            });
+
+            const names = repositories
+              .map((repository) => `${owner}/${repository.name}`)
+              .sort((left, right) => left.localeCompare(right));
+
+            const content = [
+              'repo_description_lines_max: 2',
+              '',
+              'github_repos:',
+              ...names.map((name) => `  - ${name}`),
+              '',
+            ].join('\n');
+
+            require('fs').writeFileSync('_data/repositories.yml', content);
+
+      - name: Commit repository list if changed
+        run: |
+          if git diff --quiet -- _data/repositories.yml; then
+            echo "Repository list is already up to date."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/repositories.yml
+          git commit -m "Update GitHub repository list"
+          git push
+
+          if [[ "$GITHUB_REF_NAME" == "main" || "$GITHUB_REF_NAME" == "master" ]]; then
+            gh workflow run deploy.yml --ref "$GITHUB_REF_NAME"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

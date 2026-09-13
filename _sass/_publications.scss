@@ -4,6 +4,31 @@
 
 @use "variables" as v;
 
+.research-section {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  column-gap: 3rem;
+  align-items: start;
+  width: calc(100% + 2rem);
+  margin-top: 3rem;
+
+  > h2 {
+    margin: 2rem 0 0;
+    padding-top: 0.2rem;
+    color: var(--global-text-color-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  > .publications {
+    margin-top: 0;
+    width: calc(100% + 5rem);
+  }
+}
+
 .publications {
   margin-top: 2rem;
 
@@ -24,11 +49,7 @@
   }
 
   h2.bibliography {
-    color: var(--global-divider-color);
-    border-top: 1px solid var(--global-divider-color);
-    padding-top: 1rem;
-    margin-top: 2rem;
-    text-align: right;
+    display: none;
   }
 
   ol.bibliography {
@@ -40,7 +61,7 @@
       margin-bottom: 1rem;
 
       .preview {
-        display: inline-block;
+        display: none;
       }
 
       .abbr {
@@ -178,6 +199,22 @@
     }
     div.award.hidden.open {
       border-color: var(--global-highlight-color);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .research-section {
+    display: block;
+    margin-top: 2rem;
+    width: 100%;
+
+    > h2 {
+      margin-bottom: 1rem;
+    }
+
+    > .publications {
+      width: 100%;
     }
   }
 }

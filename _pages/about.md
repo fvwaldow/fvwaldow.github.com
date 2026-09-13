@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: home
 permalink: /
 subtitle: 
 nav: false
@@ -12,7 +12,7 @@ profile:
   image_circular: false # crops the image to make it circular
   more_info: >
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # keeps the homepage focused on the introduction
 social: false # social icons are shown in the navbar
 
 announcements:
@@ -26,8 +26,10 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am a first year PhD student at the [German Institute for Economic Research](https://www.diw.de/en) and the [Humboldt University](https://www.hu-berlin.de/en). My research focuses on the intersection of spatial economics, transportation economics, and econometric methodologies. 
+I am a PhD student at the [German Institute for Economic Research](https://www.diw.de/en) and [Humboldt University of Berlin](https://www.hu-berlin.de/en). My research sits at the intersection of spatial economics, transportation economics, and econometric methods.
 
-Prior to my doctoral studies, I studied Economics at the [University of Bonn](https://www.uni-bonn.de/en/home?set_language=en) and the[Toulouse School of Economics](https://www.tse-fr.eu/). I hold a Bachelor’s degree in Political Science and Economics from the [University of Potsdam](https://www.uni-potsdam.de/en/university-of-potsdam). 
+I previously studied Economics at the [University of Bonn](https://www.uni-bonn.de/en/home?set_language=en) and the [Toulouse School of Economics](https://www.tse-fr.eu/). I hold a Bachelor's degree in Political Science and Economics from the [University of Potsdam](https://www.uni-potsdam.de/en/university-of-potsdam).
 
-Happy to discuss research anytime, feel free to reach out.
+My current work studies markets, networks, and the effects of transport and environmental policy. See my [research]({{ '/publications/' | relative_url }}) for papers and ongoing projects.
+
+Happy to discuss research anytime. [Get in touch](mailto:f.vonwaldow@uni-bonn.de).
