@@ -11,11 +11,12 @@ _styles: |
   }
 ---
 
-## GitHub Repositories
-
-<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-center">
-  {% for repository in site.data.repositories.github_repos %}
-    {% include repository/repo.liquid repository=repository %}
-  {% endfor %}
+<div class="research-section">
+  <h2>GitHub Repositories</h2>
+  <div class="publications repositories d-flex flex-wrap flex-md-row flex-column justify-content-center">
+    {% for repository in site.data.repositories.github_repos %}
+      {% include repository/repo.liquid repository=repository %}
+    {% endfor %}
+  </div>
 </div>
 

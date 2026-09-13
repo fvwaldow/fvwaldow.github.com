@@ -1,8 +1,8 @@
 ---
 layout: post
-title: NASC
+title: Network-Aware Synthetic Control (NASC)
 date: 2026-09-13
-description: NASC is an R package for Network-Aware Synthetic Control estimation when spillovers travel through networks. It corrects donor-pool contamination and recovers implied spillovers onto untreated units.
+description: NASC is an R package for Network-Aware Synthetic Control estimation when SUTVA is violated as treatment spillovers travel through networks. It corrects donor-pool contamination and recovers implied spillovers onto untreated units.
 categories: packages
 package: true
 thumbnail: assets/img/publication_preview/Tankrabatt3.png
@@ -18,8 +18,13 @@ _styles: |
   }
 
   .nasc-top-figure figure {
-    max-width: 82%;
+    max-width: 72%;
     margin: 0 auto;
+  }
+
+  .post-meta,
+  .post-tags {
+    display: none;
   }
 
   .nasc-top-figure img,
@@ -28,8 +33,19 @@ _styles: |
     box-shadow: none !important;
   }
 
+  html[data-theme="dark"] .nasc-top-figure img,
+  html[data-theme="dark"] .nasc-figure-bottom-right img {
+    filter: invert(1);
+    mix-blend-mode: screen;
+  }
+
   .nasc-figure-bottom-right figure {
     margin: 0;
+  }
+
+  .nasc-repository-card {
+    clear: both;
+    margin-top: 2rem;
   }
 
   @media (max-width: 767px) {
@@ -46,15 +62,39 @@ _styles: |
     {% include figure.liquid path="assets/img/small world networks.png" title="nasc multiple solutions" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
+The synthetic control method recovers credible counterfactuals under SUTVA, an
+assumption rarely plausible in spatial settings such as transport investments,
+place-based policies, or regional taxation. Effects propagate through trade, commuting,
+and competition networks to precisely those donor units from which the counterfactual
+is constructed, so that a convex combination of contaminated donors inherits part of
+the policy's impact and yields a biased treatment effect estimate.
 
-Synthetic control methods assume that a policy leaves the untreated comparison units unaffected. In spatial settings — transport investments, place-based policies, regional taxes — this assumption often fails, because effects travel through trade, commuting, or competition networks to exactly those donor units used to construct the counterfactual. I develop the Network-Aware Synthetic Control (NASC) estimator, which models this propagation as a spatial autoregressive process on a known network and corrects the treatment effect for contamination of the donor pool.
+The Network-Aware Synthetic Control (NASC) estimator embeds the donor pool in a spatial
+autoregressive outcome model on a known network and addresses interference through two
+complementary channels. A contamination penalty discounts each donor in proportion to
+its network exposure, sidestepping the necessity of restricting the donor pool ex ante,
+while a bias correction accounts for the remaining contamination that the selected
+donors inherit. The estimator requires neither a clean donor nor an exposure pattern
+specified beyond the network itself, and its bias vanishes asymptotically under perfect
+pre-treatment balance.
 
 <div class="nasc-figure-bottom-right">
   {% include figure.liquid path="assets/img/nasc multiple solutions.png" title="nasc multiple solutions" class="img-fluid rounded z-depth-1" %}
 </div>
 
-Inference is Bayesian, based on a modular (cut) posterior with an exponentially tilted Dirichlet prior on the weights. As a by-product, the estimator recovers the implied spillovers onto untreated units. Monte Carlo simulations on network data-generating processes compare NASC with conventional and Bayesian synthetic control and show that its performance depends critically on the quality of the pre-treatment fit. The method is implemented in the R package nasc.
+Inference is modular Bayesian, based on a cut posterior that preserves uncertainty about
+the estimated bias correction, with an exponentially tilted Dirichlet prior encoding the
+contamination penalty on the simplex. As a by-product, the estimator recovers the
+implied spillovers onto untreated units. Monte Carlo simulations across regular and
+small-world topologies show that the proposed estimator outperforms the conventional and
+the Bayesian synthetic control across various interference structures.
 
-NASC is open-source software. Visit the repository for installation instructions, examples, and the latest development version.
+The method is implemented in the R package nasc, which extends the estimator to a
+spatial Durbin random-effects panel specification. NASC is open-source software. Visit
+the repository for installation instructions, examples, and the latest development
+version.
 
-<a href="https://github.com/fvwaldow/nasc" class="btn btn-sm z-depth-0" role="button" target="_blank" rel="noopener noreferrer">View NASC on GitHub</a>
+
+<div class="nasc-repository-card repositories d-flex flex-wrap flex-md-row flex-column justify-content-center">
+  {% include repository/repo.liquid repository="fvwaldow/nasc" %}
+</div>
