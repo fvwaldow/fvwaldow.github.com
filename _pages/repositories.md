@@ -10,14 +10,8 @@ _styles: |
     display: none;
   }
 
-  .repo img {
-    mix-blend-mode: multiply;
-  }
-
-  html[data-theme="dark"] .repo img {
-    filter: invert(1);
-    mix-blend-mode: screen;
-  }
+  /* cards are requested with bg_color=00000000, so they inherit the page background
+     in both themes — no blend-mode or inversion needed */
 ---
 
 <div class="research-section">
