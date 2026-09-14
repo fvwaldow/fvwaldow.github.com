@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Packages
+description: Statistical software packages by Frederik von Waldow, including NASC for network-aware synthetic control estimation under interference.
 permalink: /packages/
 nav: true
 nav_order: 4

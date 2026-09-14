@@ -2,7 +2,7 @@
 layout: page
 permalink: /repositories/
 title: Repositories
-description:
+description: Open-source code and research software by Frederik von Waldow, including statistical packages for econometrics and causal inference.
 nav: true
 nav_order: 5
 _styles: |

@@ -4,7 +4,7 @@ permalink: /cv/
 title: CV
 nav: true
 cv_pdf: CV_english_website.pdf
-description: Curriculum Vitae
+description: Curriculum vitae of Frederik von Waldow — PhD student in economics at DIW Berlin, with research in spatial and transportation economics.
 cv_pdf_embed: true
 cv_pdf_scale: 1.1
 _styles: |
