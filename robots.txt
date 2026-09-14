@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://frederikvonwaldow.com/sitemap.xml
+Sitemap: https://fvwaldow.github.io/sitemap.xml
