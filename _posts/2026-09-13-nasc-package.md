@@ -2,7 +2,7 @@
 layout: post
 title: Network-Aware Synthetic Control (NASC)
 date: 2026-09-13
-description: NASC is an R package for Network-Aware Synthetic Control estimation when SUTVA is violated as treatment spillovers travel through networks. It corrects donor-pool contamination and recovers implied spillovers onto untreated units.
+description: R package for bayesian Network-Aware Synthetic Control estimation when SUTVA is violated as treatment spillovers travel through networks. It corrects donor-pool contamination and recovers implied spillovers onto untreated units by including an treatment exposure penalty in the synthetic weight estimation and a bias correction factor.
 categories: packages
 package: true
 thumbnail: assets/img/publication_preview/Tankrabatt3.png
@@ -27,6 +27,34 @@ _styles: |
     display: none;
   }
 
+  .post {
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 1fr);
+    column-gap: 3rem;
+    align-items: start;
+    width: calc(100% + 2rem);
+  }
+
+  .post-header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-title {
+    color: var(--global-text-color-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    margin: 2rem 0 0;
+    padding-top: 0.2rem;
+  }
+
+  .post-content {
+    width: calc(100% + 5rem);
+  }
+
   .nasc-top-figure img,
   .nasc-figure-bottom-right img {
     mix-blend-mode: multiply;
@@ -49,6 +77,19 @@ _styles: |
   }
 
   @media (max-width: 767px) {
+    .post {
+      display: block;
+      width: 100%;
+    }
+
+    .post-header {
+      margin-bottom: 1rem;
+    }
+
+    .post-content {
+      width: 100%;
+    }
+
     .nasc-figure-bottom-right {
       float: none;
       max-width: 100%;
@@ -62,6 +103,9 @@ _styles: |
     {% include figure.liquid path="assets/img/small world networks.png" title="nasc multiple solutions" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
+
+<br>
+
 The synthetic control method recovers credible counterfactuals under SUTVA, an
 assumption rarely plausible in spatial settings such as transport investments,
 place-based policies, or regional taxation. Effects propagate through trade, commuting,

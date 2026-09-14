@@ -2,6 +2,13 @@
 layout: default
 ---
 
+{% if page._styles %}
+  <!-- Page/Post style -->
+  <style type="text/css">
+    {{ page._styles }}
+  </style>
+{% endif %}
+
 {% assign cv_pdf_url = nil %}
 {% if page.cv_pdf %}
   {% if page.cv_pdf contains '://' %}
@@ -18,14 +25,14 @@ layout: default
     {% if cv_pdf_url and page.cv_pdf_embed != false %}
       <div class="row">
         <div class="col-12">
-          <p class="text-center text-monospace mt-3">
+          <p class="text-center mt-3 cv-download-link">
             <a href="{{ cv_pdf_url }}" target="_blank" rel="noopener noreferrer">Download CV</a>
           </p>
         </div>
         <div class="col-12">
           <div
             id="pdf-viewer"
-            style="height: {{ page.cv_pdf_height | default: 900 }}px; width: fit-content; max-width: 100%; margin: 0 auto; overflow-y: auto; overflow-x: hidden; border: none; border-radius: 0; padding: 0;"
+            style="width: 98vw; max-width: 98vw; margin-left: -49vw; border: none; border-radius: 0; padding: 0; position: relative; left: 50%;"
           ></div>
         </div>
       </div>
@@ -55,7 +62,6 @@ layout: default
               pageContainer.style.width = `${viewport.width}px`;
               pageContainer.style.height = `${viewport.height}px`;
               pageContainer.style.margin = '0 auto 1rem';
-              pageContainer.style.maxWidth = '100%';
 
               const canvas = document.createElement('canvas');
               canvas.style.display = 'block';

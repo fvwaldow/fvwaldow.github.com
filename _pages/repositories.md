@@ -9,6 +9,15 @@ _styles: |
   .post-header {
     display: none;
   }
+
+  .repo img {
+    mix-blend-mode: multiply;
+  }
+
+  html[data-theme="dark"] .repo img {
+    filter: invert(1);
+    mix-blend-mode: screen;
+  }
 ---
 
 <div class="research-section">

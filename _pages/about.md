@@ -24,7 +24,13 @@ latest_posts:
   enabled: false
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
+
+_styles: |
+  .post > article {
+    margin-top: 3rem;
+  }
 ---
+
 
 I am a PhD student in Economics at the [German Institute for Economic Research](https://www.diw.de/en) (DIW Berlin). My research sits at the intersection of spatial and transportation economics, with a methodological focus on causal inference.
 
@@ -34,4 +40,4 @@ My current work studies markets, spatial networks, and the effects of transport 
 
 See my [research]({{ '/publications/' | relative_url }}) for papers and ongoing projects.
 
-Please feel free to [get in touch](mailto:f.vonwaldow@uni-bonn.de) to exchange some ideas.
+Please feel free to [get in touch](mailto:f.vonwaldow@uni-bonn.de) and exchange some ideas.
