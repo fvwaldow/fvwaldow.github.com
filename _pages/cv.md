@@ -20,6 +20,13 @@ _styles: |
     color: var(--global-theme-color);
   }
 
+  .pdf-page {
+    /* content-box so the border sits outside the canvas rather than clipping it */
+    box-sizing: content-box;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 4.5px;
+  }
+
   #pdf-viewer canvas {
     mix-blend-mode: multiply;
   }
