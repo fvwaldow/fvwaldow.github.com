@@ -226,22 +226,44 @@
     {% endcase %}
   {% endfor %}
 
+  {% capture site_root %}{{ site.url }}{{ site.baseurl }}/{% endcapture %}
+  {% if page.url == '/' %}
+    {% assign schema_type = 'WebSite' %}
+  {% elsif is_blog_post %}
+    {% assign schema_type = 'BlogPosting' %}
+  {% else %}
+    {% assign schema_type = 'WebPage' %}
+  {% endif %}
+
   <script type="application/ld+json">
     {
-        "author":
-        {
-            "@type": "Person",
-            "name": "{{ author_name }}"
-        },
+        "@context": "https://schema.org",
+        "@type": "{{ schema_type }}",
+        {% if schema_type == 'WebSite' %}
+        "@id": "{{ site_root }}#website",
+        "url": "{{ site_root }}",
+        "name": {{ title | strip | jsonify }},
+        {% else %}
         "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
-        "@type": "{% if is_blog_post %}BlogPosting{% else %}WebSite{% endif %}",
+        "name": {% if page.title and page.title != 'blank' %}{{ page.title | strip | jsonify }}{% else %}{{ title | strip | jsonify }}{% endif %},
+        "isPartOf": {
+            "@type": "WebSite",
+            "@id": "{{ site_root }}#website",
+            "url": "{{ site_root }}",
+            "name": {{ title | strip | jsonify }}
+        },
+        {% endif %}
         "description": {% if page.description %}{{ page.description | strip | jsonify }}{% else %}{{ site.description | strip | jsonify }}{% endif %},
         "headline": {% if page.title and page.url != '/' %}{{ page.title | strip | jsonify }}{% else %}{{ title | strip | jsonify }}{% endif %},
-        {% if sameaslinks != blank %}
-        "sameAs": {{ sameaslinks | jsonify }},
-        {% endif %}
-        "name": "{{ author_name }}",
-        "@context": "https://schema.org"
+        "inLanguage": "{{ site.lang }}",
+        "author": {
+            "@type": "Person",
+            "@id": "{{ site_root }}#person",
+            "name": {{ author_name | strip | jsonify }},
+            "url": "{{ site_root }}"{% if sameaslinks != blank %},
+            "sameAs": {{ sameaslinks | jsonify }}{% endif %}
+        },
+        "publisher": { "@id": "{{ site_root }}#person" }
     }
   </script>
 {% endif %}

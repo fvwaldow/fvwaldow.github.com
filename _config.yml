@@ -7,11 +7,11 @@ first_name: Frederik
 middle_name:
 last_name: von Waldow
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Frederik von Waldow is a PhD student in economics at DIW Berlin, researching spatial and transportation economics with a focus on causal inference.
+  I am a PhD student in Economics at the German Institute for Economic Research (DIW Berlin). My research sits at the intersection of spatial and transportation economics, with a methodological focus on causal inference.
 footer_text: >
 keywords: Frederik von Waldow, Economics, Transportation, Urban Economics, Econometrics # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: 📐 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: favicon.svg # favicon; see _includes/head.liquid (real files live at /favicon.ico and /assets/img/favicon.svg)
 
 url: https://fvwaldow.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
