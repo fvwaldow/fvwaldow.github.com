@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Set square">
+  <path
+    fill="#e9a13b"
+    stroke="#b9791d"
+    stroke-width="3"
+    stroke-linejoin="round"
+    fill-rule="evenodd"
+    d="M12,88 L88,88 L12,12 Z M26,74 L54.2,74 L26,45.8 Z" />
+</svg>
