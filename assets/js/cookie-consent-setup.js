@@ -109,6 +109,12 @@ function initializeCookieConsent() {
       updateConsentMode(consentData);
     },
 
+    // Fires on every page load once the stored consent is read, so returning
+    // visitors who already accepted get Consent Mode set to granted again.
+    onConsent: function(consentData) {
+      updateConsentMode(consentData);
+    },
+
     // Callback when user changes preferences
     onChange: function(consentData) {
       updateConsentMode(consentData);
@@ -120,23 +126,18 @@ function initializeCookieConsent() {
    * This ensures Google services respect user choices
    */
   function updateConsentMode(consentData) {
-    // Handle both callback data structures
-    var categories = consentData.categories || consentData;
-
-    // Ensure categories is an object
-    if (!categories || typeof categories !== 'object') {
-      console.warn('Invalid consent data structure:', consentData);
-      return;
-    }
+    // v3 hands the callback { cookie, changedCategories, changedServices } -- there is
+    // no `categories` property on it, so ask the library which categories are accepted.
+    var analyticsAccepted = window.CookieConsent.acceptedCategory('analytics');
 
     gtag('consent', 'update', {
-      'analytics_storage': categories.analytics ? 'granted' : 'denied',
+      'analytics_storage': analyticsAccepted ? 'granted' : 'denied',
       'ad_storage': 'denied',
       'functionality_storage': 'denied',
       'personalization_storage': 'denied'
     });
 
-    if (categories.analytics) {
+    if (analyticsAccepted) {
       console.debug('✓ Analytics consent granted - tracking enabled for all providers');
       // Analytics scripts with data-category="analytics" will automatically run
       // when the library re-evaluates them after this consent update
