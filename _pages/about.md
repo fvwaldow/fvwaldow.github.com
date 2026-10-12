@@ -37,7 +37,7 @@ _styles: |
 ---
 
 
-I am a PhD student in Economics at the [German Institute for Economic Research](https://www.diw.de/en) (DIW Berlin). My research sits at the intersection of spatial and transportation economics, with a methodological focus on causal inference.
+I am a PhD student in Economics at the [German Institute for Economic Research](https://www.diw.de/en) (DIW Berlin) and the [Humboldt University of Berlin] (https://www.hu-berlin.de/en). My research sits at the intersection of spatial and transportation economics, with a methodological focus on causal inference and networks.
 
 Before joining DIW, I completed an M.Sc. in Economics at the [University of Bonn](https://www.uni-bonn.de/en/home?set_language=en) and the [Toulouse School of Economics](https://www.tse-fr.eu/), and a B.Sc. in Politics and Economics at the [University of Potsdam](https://www.uni-potsdam.de/en/university-of-potsdam).
 

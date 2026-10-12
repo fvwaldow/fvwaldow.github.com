@@ -76,6 +76,21 @@ _styles: |
     margin-top: 2rem;
   }
 
+  .post-content h4 {
+    color: var(--global-text-color-light);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .post-content mjx-container[display="true"] {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.35rem 0;
+  }
+
   @media (max-width: 767px) {
     .post {
       display: block;
@@ -122,16 +137,112 @@ donors inherit. The estimator requires neither a clean donor nor an exposure pat
 specified beyond the network itself, and its bias vanishes asymptotically under perfect
 pre-treatment balance.
 
+#### Exposure along the network
+
+Interference is assumed to travel across a known undirected graph with row-standardized
+weight matrix $$W$$. The common factor model underlying the conventional synthetic control
+is embedded in a spatial Durbin process, so that potential outcomes are pre-multiplied by
+the spatial multiplier $$(I_{J+1}-\rho W)^{-1}$$,
+
+$$
+y_t(0) = (I_{J+1} - \rho W)^{-1}\big(Z\beta_t + WZ\theta_t + M\lambda_t + \nu_t\iota_{J+1} + \varepsilon_t\big),
+$$
+
+where the autoregressive parameter $$\rho \in (-1,1)$$ proxies the strength of spillovers.
+Partitioning $$W$$ into the links $$w_{J1}$$ running from the treated unit to the donors and
+the donor-to-donor block $$W_J$$ yields the *contamination vector*
+
+$$
+s \;\equiv\; \rho\,(I_J - \rho W_J)^{-1} w_{J1},
+\qquad
+\delta_t \;=\; s\,\tau_{1t},
+$$
+
+so that donor $$i$$ inherits the share $$s_i$$ of the treatment effect. Expanding the
+inverse as a Neumann series $$\sum_{k\ge 0}(\rho W_J)^k$$ decomposes $$s_i$$ into successive
+orders of network exposure: it accumulates over paths of increasing length connecting
+donor $$i$$ to the treated unit, each discounted by a power of $$\rho$$, so exposure decays
+with network distance.
+
+This makes the bias of the conventional estimator explicit. For a weight vector
+$$\gamma^{sc}$$ on the simplex, the synthetic control estimate decomposes as
+
+$$
+\tau^{sc}_{1t} \;=\; \kappa^{sc}_{1t} \;+\; \big(1 - \gamma^{sc\prime} s\big)\,\tau_{1t},
+$$
+
+where $$\kappa^{sc}_{1t}$$ is the usual post-treatment prediction error. Interference enters
+as a multiplicative distortion through the scalar $$\gamma^{sc\prime}s$$, additively separable
+from $$\kappa^{sc}_{1t}$$ and, unlike it, not vanishing as the pre-treatment window grows. For
+positive spillovers the distortion is strictly attenuating; for negative spillovers its sign
+depends on the network and the realized weights.
+
+#### Regularization and correction
+
+NASC attacks that scalar from both sides. First, the synthetic control objective is augmented
+with a penalty on the weighted absolute contamination, discounting each donor in proportion
+to its exposure:
+
+$$
+\hat\gamma^{\,nasc}(\lambda) \;=\; \arg\min_{\gamma \in \Delta^{J-1}}\;
+\lVert X_1 - X_0\gamma \rVert_V^2 \;+\; \lambda\,\gamma'\lvert s\rvert .
+$$
+
+As $$\lambda \to 0$$ the objective collapses to the conventional synthetic control; as
+$$\lambda$$ grows, mass shifts from heavily exposed donors towards weakly contaminated ones.
+Donor selection is thereby endogenized rather than restricted ex ante: a contaminated donor
+still contributes whenever its value for the pre-treatment fit outweighs the contamination it
+introduces. Any $$\lambda > 0$$ additionally resolves the familiar non-uniqueness of synthetic
+weights by selecting the least contaminated among fit-equivalent solutions, and $$\lambda$$
+itself is chosen by cross-validation on the pre-treatment period.
+
 <div class="nasc-figure-bottom-right">
   {% include figure.liquid path="assets/img/nasc multiple solutions.png" title="nasc multiple solutions" class="img-fluid rounded z-depth-1" %}
 </div>
 
-Inference is modular Bayesian, based on a cut posterior that preserves uncertainty about
-the estimated bias correction, with an exponentially tilted Dirichlet prior encoding the
-contamination penalty on the simplex. As a by-product, the estimator recovers the
-implied spillovers onto untreated units. Monte Carlo simulations across regular and
-small-world topologies show that the proposed estimator outperforms the conventional and
-the Bayesian synthetic control across various interference structures.
+Second, a bias correction rescales the contamination the selected donors still carry. With
+$$\tau^{cr}_{1t} = y_{1t} - \gamma^{nasc\prime}y^{d}_{t}$$ denoting the penalized synthetic
+control estimate, the NASC estimators of the direct and indirect effects are
+
+$$
+\hat\tau^{\,nasc}_{1t} \;=\; \frac{\tau^{cr}_{1t}}{1-\gamma^{nasc\prime}s},
+\qquad
+\hat\delta^{\,nasc}_{t} \;=\; \frac{s}{1-\gamma^{nasc\prime}s}\,\tau^{cr}_{1t}.
+$$
+
+Because regularization has already shrunk $$\gamma'\lvert s\rvert$$, the correction factor sits
+closer to unity and amplifies the remaining prediction error less than correcting unpenalized
+weights would. The second expression delivers the implied spillover onto every untreated unit
+as a by-product. Under perfect pre-treatment balance the estimation error reduces to
+$$(1-\gamma^{nasc\prime}s)^{-1}\kappa^{nasc}_{1t}$$, which is bounded by a quantity that vanishes
+as the pre-treatment period expands.
+
+#### Modular Bayesian inference
+
+Since $$s$$ is a function of the estimated $$\rho$$, the correction is itself a random variable.
+Inference places an exponentially tilted Dirichlet prior on the weights, which encodes the
+contamination penalty directly on the simplex,
+
+$$
+\gamma \mid \lambda, \rho \;\sim\; \mathrm{ETDir}\big(\alpha, \lambda\lvert s\rvert\big)
+\;\propto\; \mathrm{Dir}(\gamma;\alpha)\,\exp\!\big(-\lambda\,\gamma'\lvert s\rvert\big),
+\qquad \gamma \in \Delta^{J-1},
+$$
+
+and whose maximum-a-posteriori estimate under a uniform base measure reproduces the frequentist
+NASC weights exactly. Estimation then proceeds along a cut posterior,
+
+$$
+p_{\mathrm{cut}}(\zeta \mid Y, Z, W) \;=\; p(\zeta_2 \mid X_1, W, \zeta_1)\;p(\zeta_1 \mid Y, Z, W),
+$$
+
+with $$\zeta_1=\{\rho,\beta,\sigma_1\}$$ estimated on pre-treatment data in an initial module and
+the weights $$\zeta_2=\{\gamma,\lambda,\sigma_2\}$$ in a second module conditional on it.
+Information flows strictly forward: uncertainty about $$\rho$$ propagates into the weights and
+the bias correction, while the synthetic control matching cannot feed back and misspecify the
+underlying network dependence. Monte Carlo simulations across regular and small-world
+topologies show that the proposed estimator outperforms the conventional and the Bayesian
+synthetic control across various interference structures.
 
 The method is implemented in the R package nasc, which extends the estimator to a
 spatial Durbin random-effects panel specification. NASC is open-source software. Visit
