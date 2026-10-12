@@ -45,4 +45,4 @@ My current work studies markets, spatial networks, and the effects of transport 
 
 See my [research]({{ '/publications/' | relative_url }}) for papers and ongoing projects.
 
-Please feel free to [get in touch](mailto:f.vonwaldow@uni-bonn.de) and exchange some ideas.
+Please feel free to [get in touch](mailto:fvonwaldow@diw.de) and exchange some ideas.
