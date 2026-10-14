@@ -7,7 +7,7 @@ first_name: Frederik
 middle_name:
 last_name: von Waldow
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  I am a PhD student in Economics at the German Institute for Economic Research (DIW Berlin). My research sits at the intersection of spatial and transportation economics, with a methodological focus on causal inference.
+  Frederik von Waldow is a PhD student in Economics at the German Institute for Economic Research (DIW Berlin). His research sits at the intersection of spatial and transportation economics, with a methodological focus on causal inference.
 footer_text: >
 keywords: Frederik von Waldow, Economics, Transportation, Urban Economics, Econometrics # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
