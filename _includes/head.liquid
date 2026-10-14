@@ -66,9 +66,11 @@
   >
 {% endif %}
 
-<!-- Favicons: real files so search engines can crawl them (data: URIs are not crawlable) -->
+<!-- Favicons: use the same set-square PNG for browsers, search engines, and devices -->
+<link rel="icon" type="image/png" sizes="48x48" href="{{ '/assets/img/favicon-48.png' | relative_url | bust_file_cache }}">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ '/assets/img/favicon-192.png' | relative_url | bust_file_cache }}">
+<link rel="icon" type="image/png" sizes="512x512" href="{{ '/assets/img/favicon-512.png' | relative_url | bust_file_cache }}">
 <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="16x16 32x32 48x48">
-<link rel="icon" type="image/svg+xml" href="{{ '/assets/img/favicon.svg' | relative_url | bust_file_cache }}">
 <link rel="apple-touch-icon" href="{{ '/assets/img/favicon-180.png' | relative_url | bust_file_cache }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url | bust_css_cache }}">
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
