@@ -407,7 +407,7 @@ $$
 \qquad \gamma \in \Delta^{J-1},
 $$
 
-and whose maximum-a-posteriori estimate under $$\alpha = 1$$ reproduces the frequentist
+and whose maximum-a-posteriori estimate under a concentration parameter $$\alpha = 1$$ reproduces the frequentist
 NASC weights exactly. To preserve uncertainty quantification estimation then proceeds along a cut posterior,
 
 $$
@@ -485,7 +485,7 @@ with $$\tau_t \sim N(5,1)$$, and donor $$i$$ inherits $$s_i\tau_t$$.
       <canvas data-nasc="simplex" role="img" aria-label="Exponentially tilted Dirichlet density over the donor weight simplex"></canvas>
       <div class="nasc-inline-slider">
         <label>
-          <span class="nasc-label">Prior α</span>
+          <span class="nasc-label">concentration parameter α</span>
           <input type="range" min="10" max="30" step="1" value="10" data-nasc="alpha" />
           <output data-nasc="alphaVal">1.0</output>
         </label>
