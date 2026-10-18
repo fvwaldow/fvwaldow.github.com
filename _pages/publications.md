@@ -18,6 +18,13 @@ _styles: |
 <!-- _pages/publications.md -->
 
 <div class="research-section">
+  <h2>Current Research</h2>
+  <div class="publications">
+  {% bibliography --query @unpublished %}
+  </div>
+</div>
+
+<div class="research-section">
   <h2>Publications</h2>
   <div class="publications">
   {% bibliography --query @article %}

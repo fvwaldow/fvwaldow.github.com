@@ -52,3 +52,16 @@ the existence of double marginalization.},
   html={https://www.diw.de/de/diw_01.c.878046.de/publikationen/diskussionspapiere/2023_2047/combining_gps_tracking_and_surveys_for_a_mode_choice_model__processing_data_from_a_quasi-natural_experiment_in_germany.html},
   preview={GPS.png}
 }
+
+@unpublished{vonwaldow2026nasc,
+  title={Network-Aware Synthetic Control: Bias Correction and Regularization under Interference},
+  author={{von Waldow}, Frederik},
+  year={2026},
+  note={Work in progress},
+  selected={false},
+  bibtex_show={true},
+  preview={NASC.png},
+  abstract={The synthetic control method recovers credible counterfactuals under SUTVA, an assumption rarely plausible in many empirical applications. This study develops the Network-Aware Synthetic Control (NASC) estimator, which embeds the donor pool in a spatial autoregressive outcome model and addresses interference through two complementary channels. A contamination penalty discounts each donor in proportion to its network exposure, while a bias correction accounts for the remaining contamination selected donors inherit. I derive estimators for direct and indirect effects whose bias vanishes asymptotically under perfect pre-treatment balance, and propose a modular Bayesian framework that preserves uncertainty about the estimated bias correction. The NASC estimator outperforms benchmark estimators in a Monte Carlo simulation across various interference structures.},
+  package={/blog/2026/nasc-package/},
+  code={https://github.com/fvwaldow/nasc}
+}
