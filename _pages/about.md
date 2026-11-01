@@ -8,7 +8,7 @@ show_title: false
 
 profile:
   align: left
-  image: profile-picture.png
+  image: portrait_transparent.png
   image_circular: false # crops the image to make it circular
   more_info: >
 
